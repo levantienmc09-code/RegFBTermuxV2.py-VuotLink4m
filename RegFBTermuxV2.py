@@ -83,7 +83,7 @@ def human_type(el, text):
 def new_driver():
     opt = Options()
     opt.binary_location = FIREFOX_BIN
- #   opt.add_argument("--headless")
+    opt.add_argument("--headless")
 
     opt.set_preference("permissions.default.image", 2)
     opt.set_preference("media.autoplay.default", 5)
