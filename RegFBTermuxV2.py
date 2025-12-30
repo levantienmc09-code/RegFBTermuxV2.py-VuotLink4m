@@ -6,8 +6,11 @@ from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.firefox.service import Service
 from selenium.webdriver.support.ui import WebDriverWait, Select
 from selenium.webdriver.support import expected_conditions as EC
-os.system("clear")
-# ================= PATH =================
+# ==== Màu ====
+xanh = "\033[1;96m"  # Màu xanh sáng đậm
+trang = "\033[1;97m"  # Màu trắng sáng1
+do = "\033[1;91m"    # Màu đỏ sáng
+RESET = "\033[0m"
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 #SAVE_IMG = os.path.join(BASE_DIR, "Img")
 SAVE_TXT = os.path.join(BASE_DIR, "Facebook.txt")
@@ -22,7 +25,19 @@ MAIL_API = "https://hunght1890.com/"
 # ================= RANDOM =================
 HO  = ["Nguyễn","Trần","Lê","Phạm","Hoàng","Huỳnh","Phan","Vũ","Võ","Đặng"]
 TEN = ["An","Bình","Bảo","Chi","Dương","Giang","Hà","Hải","Hiếu"]
-Domain = ["@hunght1890.com","@ait-tesol.edu.vn"]
+Domain = ["@hunght1890.com","@ait-tesol.edu.vn","@hoanganh.mx"]
+def banner():
+    os.system('cls' if os.name=='nt' else 'clear')
+    print(f'''
+{xanh}██╗░░░░░███████╗████████╗██╗███████╗███╗░░██╗
+{trang}██║░░░░░██╔════╝╚══██╔══╝██║██╔════╝████╗░██║
+{xanh}██║░░░░░█████╗░░░░░██║░░░██║█████╗░░██╔██╗██║
+{trang}██║░░░░░██╔══╝░░░░░██║░░░██║██╔══╝░░██║╚████║
+{xanh}███████╗███████╗░░░██║░░░██║███████╗██║░╚███║
+{trang}╚══════╝╚══════╝░░░╚═╝░░░╚═╝╚══════╝╚═╝░░╚══╝{RESET}''')
+    print(f"{trang}─"*45)
+    print("Mua Key Ib Tele @letien209\nGiá 2k/1 Ngày\nMin Mua 3 Ngày\n50k Key Vĩnh Viễn")
+    print(f"{trang}─"*45)
 def random_name():
     return random.choice(HO), random.choice(TEN)
 
@@ -74,10 +89,10 @@ def get_uid(driver):
     return "UNKNOWN"
 
 # ================= HUMAN TYPE =================
-def human_type(el, text):
-    for ch in text:
-        el.send_keys(ch)
-        time.sleep(random.uniform(0.1, 0.2))
+#def human_type(el, text):
+#    for ch in text:
+  #      el.send_keys(ch)
+    #    time.sleep(random.uniform(0.1, 0.2))
 
 # ================= DRIVER (FIX LAG FIREFOX) =================
 def new_driver():
@@ -189,12 +204,12 @@ def reg_one_with_name(full_name):
         time.sleep(4)
 
         if not wait_register_form(driver):
-            print("------Lỗi Or Checkpoint------")
+            print(f"─────────── {do}Lỗi Hoặc Checkpoint ───────────")
             return False, uid
 
         print(f"Đang Nhập Họ Và Tên: {full_name}")
-        human_type(driver.find_element(By.NAME, "firstname"), ho)
-        human_type(driver.find_element(By.NAME, "lastname"), ten)
+        driver.find_element(By.NAME, "firstname").send_keys(ho)
+        driver.find_element(By.NAME, "lastname").send_keys(ten)
 
         print(f"Đang Nhập Ngày Tháng Năm Sinh: {day}/{month}/{year}")
         Select(driver.find_element(By.NAME,"birthday_day")).select_by_value(day)
@@ -202,10 +217,10 @@ def reg_one_with_name(full_name):
         Select(driver.find_element(By.NAME,"birthday_year")).select_by_value(year)
 
         print(f"Đang Nhập Email: {email}")
-        human_type(driver.find_element(By.NAME, "reg_email__"), email)
+        driver.find_element(By.NAME, "reg_email__").send_keys(email)
 
-        print(f"Đang Nhập Pass: {pwd}")
-        human_type(driver.find_element(By.NAME, "reg_passwd__"), pwd)
+        print(f"Đang Nhập Mật Khẩu: {pwd}")
+        driver.find_element(By.NAME, "reg_passwd__").send_keys(pwd)
 
         driver.find_element(By.XPATH, "//input[@value='2']").click()
         driver.find_element(By.NAME, "websubmit").click()
@@ -226,7 +241,7 @@ def reg_one_with_name(full_name):
             return False, uid
 
         print(f"Check Được Mã: {code}")
-        human_type(code_input, code)
+        code_input.send_keys(code)
         time.sleep(3)
         driver.find_element(By.XPATH, "//button").click()
         time.sleep(random.uniform(6, 12))
@@ -308,8 +323,8 @@ def clear_last_lines(n=2):
         print("\033[F\033[K", end="")
 
 def main():
-    os.system("clear")
-    total = int(input("Bạn Muốn Reg Bao Nhiêu Acc: "))
+    banner()
+    total = int(input(f"{trang}Bạn Muốn Reg Bao Nhiêu Acc: "))
 
     print("1. Auto Random First Name Và Last Name")
     print("2. Bạn Tự Đặt Có Từng Acc")
@@ -340,7 +355,7 @@ def main():
     uids = []
     
     for i, name in enumerate(names, 1):
-        print(f"\n===== REG {i}/{total} =====")
+        print(f"\n─────────── 𝗥𝗘𝗚 𝗔𝗖𝗖 𝗙𝗔𝗖𝗘𝗕𝗢𝗢𝗞 {i}/{total} ───────────")
         success, uid = reg_one_with_name(name)
         if success:
             success_count += 1
@@ -351,15 +366,15 @@ def main():
         time.sleep(6)
 
     # Hiển thị tổng kết
-    print("\n" + "="*40)
-    print(f"TỔNG KẾT: {success_count}/{total} acc thành công")
+    print("\n" + "─"*40)
+    print(f"TỔNG ACC: {success_count}/{total} ACC THÀNH CÔNG")
     
     if uids:
         print("\nTổng UID:")
-        print("-" * 20)
+        print("─" * 20)
         for uid in uids:
             print(uid)
-        print("-" * 20)
+        print("─" * 20)
         
         # Lưu UID vào file riêng
         uid_file = os.path.join(BASE_DIR, "UID.txt")
@@ -370,7 +385,7 @@ def main():
                 f.write(uid + "\n")
         print(f"\n✓ Đã lưu UID vào file: {uid_file}")
     
-    print("="*40)
+    print("─"*40)
 
 if __name__ == "__main__":
     main()
