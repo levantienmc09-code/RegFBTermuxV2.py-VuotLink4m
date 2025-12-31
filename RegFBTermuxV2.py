@@ -36,7 +36,7 @@ def banner():
 {xanh}███████╗███████╗░░░██║░░░██║███████╗██║░╚███║
 {trang}╚══════╝╚══════╝░░░╚═╝░░░╚═╝╚══════╝╚═╝░░╚══╝{RESET}''')
     print(f"{trang}─"*45)
-    print(f"Hiện Tại Là 01/01/2026 Thì Giảm 2k Xuống 500đ Đến Hết Hôm Nay Min Mua 10 Ngày Nhé")
+    print("Hiện Tại Là 01/01/2026 Thì Giảm 2k Xuống 500đ Đến Hết Hôm Nay Min Mua 10 Ngày Nhé")
     print("Mua Key Ib Tele @letien209\nGiá 2k/1 Ngày\nMin Mua 3 Ngày\n50k Key Vĩnh Viễn")
     print(f"{trang}─"*45)
 def random_name():
