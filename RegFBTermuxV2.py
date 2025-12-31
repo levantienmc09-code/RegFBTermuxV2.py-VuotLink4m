@@ -204,7 +204,7 @@ def reg_one_with_name(full_name):
         time.sleep(4)
 
         if not wait_register_form(driver):
-            print(f"─────────── {do}Lỗi Hoặc Checkpoint ───────────")
+            print(f"─────────── {do}Lỗi Hoặc Checkpoint ───────────{trang}")
             return False, uid
 
         print(f"Đang Nhập Họ Và Tên: {full_name}")
@@ -326,8 +326,8 @@ def main():
     banner()
     total = int(input(f"{trang}Bạn Muốn Reg Bao Nhiêu Acc: "))
 
-    print("1. Auto Random First Name Và Last Name")
-    print("2. Bạn Tự Đặt Có Từng Acc")
+    print("1. Auto Random Họ Và Tên")
+    print("2. Bạn Tự Đặt Cho Từng Acc")
     t = input("> ").strip()
 
     names = []
