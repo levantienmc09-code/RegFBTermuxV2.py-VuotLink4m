@@ -15,7 +15,7 @@
     "Ngay": "06/08/2024"
   },
   {
-    "Key": "KeyGiaHuy10Day",
+    "Key": "KeyGiaHuy",
     "TG": "21:15:15",
     "Ngay": "10/01/2026"
   }
