@@ -7,9 +7,9 @@ from selenium.webdriver.firefox.service import Service
 from selenium.webdriver.support.ui import WebDriverWait, Select
 from selenium.webdriver.support import expected_conditions as EC
 # ==== Màu ====
-xanh = "\033[1;96m"  # Màu xanh sáng đậm
-trang = "\033[1;97m"  # Màu trắng sáng1
-do = "\033[1;91m"    # Màu đỏ sáng
+xanh = "\033[1;96m"  
+trang = "\033[1;97m"  
+do = "\033[1;91m"    
 RESET = "\033[0m"
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 #SAVE_IMG = os.path.join(BASE_DIR, "Img")
@@ -36,7 +36,6 @@ def banner():
 {xanh}███████╗███████╗░░░██║░░░██║███████╗██║░╚███║
 {trang}╚══════╝╚══════╝░░░╚═╝░░░╚═╝╚══════╝╚═╝░░╚══╝{RESET}''')
     print(f"{trang}─"*45)
-    print("Giảm 2k Xuống 500đ Đến Hết Hôm Nay Min Mua 10 Ngày Nhé")
     print("Mua Key Ib Tele @letien209\nGiá 2k/1 Ngày\nMin Mua 3 Ngày\n50k Key Vĩnh Viễn")
     print(f"{trang}─"*45)
 def random_name():
